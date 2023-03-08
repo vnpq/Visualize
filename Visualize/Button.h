@@ -2,41 +2,82 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-class Button : public sf::Drawable, public sf::Transformable {
-public:
-	Button(const std::string& text,
-		const sf::Vector2f& size,
-		const sf::Color& bgColor,
-		const sf::Color& textColor) {
+enum class ButtonState {
+	Normal,
+	Pressed,
+	Hovered,
+	Disabled
+};
 
-		rect.setSize(size);
-		rect.setFillColor(bgColor);
-		rect.setOutlineThickness(1.0f);
-		rect.setOutlineColor(sf::Color::Black);
+
+class Button : public sf::Drawable, public sf::Transformable {
+public: 
+	ButtonState state;
+	
+	Button(const std::string& text) {
+		
+		rect.setSize(sf::Vector2f(200.f, 70.f));
+		rect.setFillColor(sf::Color(182, 239, 242));
 
 		// Create the text for the button
 		font.loadFromFile("Lexend-Regular.ttf");
 		buttonText.setFont(font);
-		buttonText.setCharacterSize(20);
-		buttonText.setFillColor(textColor);
+		buttonText.setCharacterSize(25);
+		buttonText.setFillColor(sf::Color::Black);
 		buttonText.setString(text);
 
 		// Position the text in the center of the button
 		sf::FloatRect textBounds = buttonText.getLocalBounds();
 		buttonText.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
-		buttonText.setPosition(size / 2.0f);
+		buttonText.setPosition(100.f, 38.f);
 
 		// Position the button
 		rect.setPosition(getPosition());
+
+		state = ButtonState::Normal;
 	}
-		void handleEvent(const sf::Event& event, sf::RenderWindow& window) {
-        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-            if (rect.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))) {
-                // Button was clicked
-                std::cout << "Button clicked!" << std::endl;
-            }
-        }
-    }
+	
+	void setNormal() {
+		rect.setFillColor(sf::Color(182, 239, 242));
+	}
+
+	void setPressedColor() {
+		rect.setFillColor(sf::Color(68, 84, 145));
+	}
+
+	void setHovered() {
+		rect.setOutlineThickness(1.f);
+		rect.setOutlineColor(sf::Color(68, 84, 145));
+	}
+
+	void setDisabledColor() {
+		rect.setFillColor(sf::Color::Green);
+		rect.setOutlineColor(sf::Color::Black);
+	}
+
+	void onMouseDown() {
+		state = ButtonState::Pressed;
+		setPressedColor();
+	}
+
+	void onMouseUp() {
+		state = ButtonState::Normal;
+		setNormal();
+	}
+
+	void onMouseMove(sf::Vector2f mousePos) {
+		if (rect.getGlobalBounds().contains(mousePos)) {
+			if (state != ButtonState::Pressed) {
+				state = ButtonState::Hovered;
+				setHovered();
+			}
+		}
+		else {
+			state = ButtonState::Normal;
+			setNormal();
+		}
+	}
+
 
 
 private:

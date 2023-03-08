@@ -8,21 +8,37 @@ int main() {
 
 	sf::Text text;
 	text.setFont(Style::font);
-	text.setFillColor(Style::darkText);
+	text.setFillColor(sf::Color::Black);
 	text.setString("Testing");
 	text.setCharacterSize(20);
 	text.setPosition(100.0f, 100.0f);
 
-	Button homeButt("Home", sf::Vector2f(100, 90), Style::darkBg, Style::lightText);
+	Button homeButt("Toi yeu KTLT");
 	homeButt.setPosition(100, 200);
 
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
+			switch (event.type) {
+			case sf::Event::Closed:
 				window.close();
-			}
-			homeButt.handleEvent(event, window);
+				break;
+			case sf::Event::MouseButtonPressed:
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					homeButt.onMouseDown();
+				}
+				break;
+			case sf::Event::MouseButtonReleased:
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					homeButt.onMouseUp();
+				}
+				break;
+			case sf::Event::MouseMoved:
+				homeButt.onMouseMove(sf::Vector2f(sf::Mouse::getPosition()));
+				break;
+			default:
+				break;
+			}			
 		}
 
 		window.clear(Style::backgroundColor);
