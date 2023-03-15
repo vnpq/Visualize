@@ -6,7 +6,7 @@
 class Button {
 public: 
 	const void init(sf::Vector2f pos, const std::string text);
-	void handleEvent(sf::RenderWindow& window, sf::Event event);
+	bool handleEvent(sf::RenderWindow& window, sf::Event event);
 	void draw(sf::RenderWindow &window);
 
 	enum ButtonState {

@@ -30,7 +30,7 @@ const void Button::init(sf::Vector2f pos, const std::string text) {
 
 }
 
-void Button::handleEvent(sf::RenderWindow& window, sf::Event event)
+bool Button::handleEvent(sf::RenderWindow& window, sf::Event event)
 {
 	//get the position of the mouse
 	sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
@@ -56,8 +56,7 @@ void Button::handleEvent(sf::RenderWindow& window, sf::Event event)
 		//Opps! Mouse is outside the button
 		state = Normal;
 	}
-	//Draw the button using the current state
-	draw(window);
+	return (state == Pressed);
 }
 
 void Button::draw(sf::RenderWindow& window)

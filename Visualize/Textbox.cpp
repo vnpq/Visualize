@@ -17,8 +17,9 @@ void Textbox::init(sf::Vector2f pos)
 	box.setPosition(pos);
 
 }
-void Textbox::handleEvent(sf::RenderWindow& window, sf::Event event)
+void Textbox::handleEvent(sf::RenderWindow& window, sf::Event event, std::string& output)
 {
+    std::string st = text.getString();
     if (event.type == sf::Event::MouseButtonPressed) {
         sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
         sf::Vector2f mousePos = window.mapPixelToCoords(pixelPos);
@@ -30,24 +31,24 @@ void Textbox::handleEvent(sf::RenderWindow& window, sf::Event event)
     
     if (state == Typable && event.type == sf::Event::TextEntered)
     {
-        if (event.text.unicode < 128) // only handle ASCII characters
-        {
-            // handle backspace
-            if (event.text.unicode == '\b' && !text.getString().isEmpty())
-            {
-                text.setString(text.getString().substring(0, text.getString().getSize() - 1));
+        char c = event.text.unicode;
+        if (c < 128) // only handle ASCII characters
+            switch (c) {
+            case '\b':    // handle backspace
+                if (!text.getString().isEmpty()) {
+                    st = text.getString().substring(0, text.getString().getSize() - 1);
+                    text.setString(st);
+                }
+                break;
+            case '\r': //handle enter
+                output = st;
+                state = UnTypable;
+                break;
+            default:
+                st = text.getString() + c;
+                text.setString(st);
+                break;
             }
-            // handle newlines
-            else if (event.text.unicode == '\n')
-            {
-                // do nothing
-            }
-            // handle normal characters
-            else
-            {
-                text.setString(text.getString() + static_cast<char>(event.text.unicode));
-            }
-        }
     }
 }
 

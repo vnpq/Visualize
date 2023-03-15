@@ -18,7 +18,7 @@ public:
 	int state = UnTypable;
 
 	void init(sf::Vector2f pos);
-	void handleEvent(sf::RenderWindow& window, sf::Event event);
+	void handleEvent(sf::RenderWindow& window, sf::Event event, std::string& output);
 	void draw(sf::RenderWindow& window);
 
 };

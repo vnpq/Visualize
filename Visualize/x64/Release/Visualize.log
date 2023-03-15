@@ -1,7 +1,6 @@
-﻿  Textbox.cpp
-  main.cpp
+﻿  Button.cpp
   Generating code
   Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 81 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 109 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Visualize.vcxproj -> D:\0. HCMUS\KTLT\Visualize\x64\Release\Visualize.exe
