@@ -3,8 +3,7 @@
 void Textbox::init(sf::Vector2f pos)
 {
 	//setting 
-	font.loadFromFile("Lexend-Regular.ttf");
-	text.setFont(font);
+	text.setFont(Style::font);
 	text.setFillColor(sf::Color::Blue);
 	text.setCharacterSize(25);
 	text.setPosition(sf::Vector2f(pos.x + 5.f, pos.y + 5.f));

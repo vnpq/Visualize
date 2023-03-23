@@ -1,7 +1,9 @@
+#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <string>
+#include "Style.h"
 
 
 class Textbox {
@@ -11,7 +13,6 @@ public:
 		Typable = 0,
 		UnTypable = 1
 	};
-	sf::Font font;
 	sf::Text text;
 	sf::RectangleShape box;
 	

@@ -140,11 +140,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CircularLL.cpp" />
+    <ClCompile Include="custom.cpp" />
+    <ClCompile Include="doublyLL.cpp" />
+    <ClCompile Include="dynaArray.cpp" />
+    <ClCompile Include="linkedList.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="home.cpp" />
+    <ClCompile Include="queue.cpp" />
+    <ClCompile Include="stack.cpp" />
+    <ClCompile Include="staticArray.cpp" />
+    <ClCompile Include="Style.cpp" />
     <ClCompile Include="Textbox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="home.h" />
     <ClInclude Include="Style.h" />
     <ClInclude Include="Textbox.h" />
   </ItemGroup>

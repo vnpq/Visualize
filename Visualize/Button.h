@@ -1,6 +1,8 @@
+#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include "Style.h"
 
 
 class Button {
@@ -16,7 +18,7 @@ public:
 	};
 
 	int state = Normal;
+	sf::Font bFont;
 	sf::Text buttonText;
-	sf::Font font;
 	sf::RectangleShape normalRect, hoveredRect, pressedRect;
 };

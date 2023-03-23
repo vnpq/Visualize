@@ -3,10 +3,9 @@
 
 const void Button::init(sf::Vector2f pos, const std::string text) {
 	//setting for the text
-	font.loadFromFile("Lexend-Regular.ttf");
-	buttonText.setFont(font);
+	buttonText.setFont(Style::font);
 	buttonText.setString(text);
-	buttonText.setCharacterSize(25);
+	buttonText.setCharacterSize(23);
 	buttonText.setFillColor(sf::Color::Black);
 	sf::FloatRect textRect = buttonText.getLocalBounds();
 	buttonText.setOrigin(textRect.left + textRect.width / 2.0f,
@@ -15,17 +14,15 @@ const void Button::init(sf::Vector2f pos, const std::string text) {
 
 	//setting for the rectangle with a rect for each state
 	normalRect.setSize(sf::Vector2f(180.f, 70.f));
-	normalRect.setFillColor(sf::Color::Cyan);
+	normalRect.setFillColor(Style::lightPink);
 	normalRect.setPosition(pos);
 	
 	hoveredRect.setSize(sf::Vector2f(180.f, 70.f));
-	hoveredRect.setFillColor(sf::Color::Cyan);
-	hoveredRect.setOutlineThickness(1.f);
-	hoveredRect.setOutlineColor(sf::Color::Blue);
+	hoveredRect.setFillColor(Style::purple);
 	hoveredRect.setPosition(pos);
 
 	pressedRect.setSize(sf::Vector2f(180.f, 70.f));
-	pressedRect.setFillColor(sf::Color::Blue);
+	pressedRect.setFillColor(Style::darkBlue);
 	pressedRect.setPosition(pos);
 
 }
