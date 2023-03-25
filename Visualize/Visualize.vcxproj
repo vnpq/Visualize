@@ -156,6 +156,8 @@
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="home.h" />
+    <ClInclude Include="linkedList.h" />
+    <ClInclude Include="staticArray.h" />
     <ClInclude Include="Style.h" />
     <ClInclude Include="Textbox.h" />
   </ItemGroup>

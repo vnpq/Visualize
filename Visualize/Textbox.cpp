@@ -4,7 +4,7 @@ void Textbox::init(sf::Vector2f pos)
 {
 	//setting 
 	text.setFont(Style::font);
-	text.setFillColor(sf::Color::Blue);
+	text.setFillColor(Style::darkBlue);
 	text.setCharacterSize(25);
 	text.setPosition(sf::Vector2f(pos.x + 5.f, pos.y + 5.f));
 
@@ -12,7 +12,7 @@ void Textbox::init(sf::Vector2f pos)
 	box.setSize(sf::Vector2f(200.f, 70.f));
 	box.setOutlineThickness(1.f);
 	box.setOutlineColor(sf::Color::Black);
-	box.setFillColor(sf::Color::Transparent);
+	box.setFillColor(Style::cyan);
 	box.setPosition(pos);
 
 }

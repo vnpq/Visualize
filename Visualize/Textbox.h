@@ -1,8 +1,4 @@
 #pragma once
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <string>
 #include "Style.h"
 
 

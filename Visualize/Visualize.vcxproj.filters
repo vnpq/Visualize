@@ -68,5 +68,11 @@
     <ClInclude Include="home.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="staticArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="linkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,9 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <string>
 #include "Button.h"
 #include "Textbox.h"
-#include "home.h"
 
 namespace Style {
 	extern sf::Color backgroundColor;

@@ -2,9 +2,11 @@
 
 void Custom(sf::RenderWindow& window)
 {
+	//create a button to back to home page
 	Button home;
-	home.init(sf::Vector2f(1670.f, 820.f), "HOME");
+	home.init(sf::Vector2f(1670.f, 800.f), "HOME");
 
+	//create a sidebar
 	sf::RectangleShape sidebar;
 	sidebar.setFillColor(Style::darkBlue);
 	sidebar.setSize(sf::Vector2f(380.f, 1080.f));

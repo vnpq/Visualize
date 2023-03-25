@@ -22,7 +22,7 @@ const void Button::init(sf::Vector2f pos, const std::string text) {
 	hoveredRect.setPosition(pos);
 
 	pressedRect.setSize(sf::Vector2f(180.f, 70.f));
-	pressedRect.setFillColor(Style::darkBlue);
+	pressedRect.setFillColor(Style::cyan);
 	pressedRect.setPosition(pos);
 
 }
