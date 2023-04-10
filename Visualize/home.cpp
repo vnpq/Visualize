@@ -25,8 +25,6 @@ void home(sf::RenderWindow& window)
 	au.setStyle(sf::Text::Italic);
 	au.setCharacterSize(30);
 	au.setPosition(sf::Vector2f(1390.f, 600.f));
-
-
 	
 	
 	//create the sidebar
@@ -55,6 +53,7 @@ void home(sf::RenderWindow& window)
 
 	Button exit;
 	exit.init(sf::Vector2f(1670.f, 800.f), "EXIT");
+
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -114,3 +113,6 @@ void home(sf::RenderWindow& window)
 		window.display();
 	}
 }
+
+
+

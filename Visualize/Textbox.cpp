@@ -1,4 +1,5 @@
 #include "Textbox.h"
+#include <iostream>
 
 void Textbox::init(sf::Vector2f pos)
 {
@@ -9,26 +10,18 @@ void Textbox::init(sf::Vector2f pos)
 	text.setPosition(sf::Vector2f(pos.x + 5.f, pos.y + 5.f));
 
 	
-	box.setSize(sf::Vector2f(200.f, 70.f));
+	box.setSize(sf::Vector2f(200.f, 68.f));
 	box.setOutlineThickness(1.f);
 	box.setOutlineColor(sf::Color::Black);
 	box.setFillColor(Style::cyan);
 	box.setPosition(pos);
 
 }
-void Textbox::handleEvent(sf::RenderWindow& window, sf::Event event, std::string& output)
+void Textbox::handleEvent(sf::RenderWindow& window, sf::Event event, std::string& st, Button& OK)
 {
-    std::string st = text.getString();
-    if (event.type == sf::Event::MouseButtonPressed) {
-        sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
-        sf::Vector2f mousePos = window.mapPixelToCoords(pixelPos);
-        if (box.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
-            state = Typable;
-        }
-        else state = UnTypable;
-    }
-    
-    if (state == Typable && event.type == sf::Event::TextEntered)
+    //std::string st = text.getString();
+	text.setString(st);
+    if (event.type == sf::Event::TextEntered)
     {
         char c = event.text.unicode;
         if (c < 128) // only handle ASCII characters
@@ -40,8 +33,8 @@ void Textbox::handleEvent(sf::RenderWindow& window, sf::Event event, std::string
                 }
                 break;
             case '\r': //handle enter
-                output = st;
-                state = UnTypable;
+                //output = st;
+				OK.state = 2;
                 break;
             default:
                 st = text.getString() + c;
@@ -63,29 +56,30 @@ void input(sf::RenderWindow& window, std::string& st, std::string text, sf::Vect
 	sf::Text ask;
 	ask.setString(text);
 	ask.setFont(Style::font);
-	ask.setFillColor(Style::darkBlue);
+	ask.setFillColor(sf::Color::White);
 	ask.setCharacterSize(23);
 	ask.setPosition(pos);
 
 	Textbox box;
-	box.init(sf::Vector2f(pos.x, pos.y + 35.f));
+	box.init(sf::Vector2f(pos.x + 70.f, pos.y - 20.f));
 
 	Button OK;
-	OK.init(sf::Vector2f(pos.x + 200.f, pos.y + 35.f), "OK");
+	OK.init(sf::Vector2f(pos.x + 271.f, pos.y - 21.f), "OK");
 
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) window.close();
-			box.handleEvent(window, event, st);
-			if (OK.handleEvent(window, event)) {
+			box.handleEvent(window, event, st, OK);
+			if (OK.state == 2 || OK.handleEvent(window, event)) {
 				OK.state = 0;
 				return;
 			}
+			if (event.type == sf::Event::TextEntered && event.text.unicode == 'r')
+				return;
 			if (home.handleEvent(window, event) || cancel.handleEvent(window, event))
 				return;
 		}
-
 		window.draw(ask);
 		box.draw(window);
 		OK.draw(window);

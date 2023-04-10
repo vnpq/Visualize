@@ -2,9 +2,20 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <iostream>
+#include <sstream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 #include "Button.h"
 #include "Textbox.h"
+#include "Arrow.h"
+#include "Layer.h"
+#include "Source.h"
+#include "Display.h"
+//#include "home.h"
+
+#define M_PI 3.14159265358979323846
 
 namespace Style {
 	extern sf::Color backgroundColor;
@@ -15,7 +26,7 @@ namespace Style {
 	extern sf::Color lightPink;
 	
 	extern sf::Font font;
-	extern void loadFont();
 	extern sf::Font font2;
-	extern void loadFont2();
+	extern sf::Font cFont;
+	extern void loadFont();
 }

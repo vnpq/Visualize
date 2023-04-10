@@ -9,12 +9,12 @@ namespace Style {
 	sf::Color lightPink = sf::Color(252, 199, 216);
 
 	sf::Font font;
+	sf::Font font2;
+	sf::Font cFont;
 	void loadFont() {
 		font.loadFromFile("Lexend-Regular.ttf");
-	}
-	sf::Font font2;
-	void loadFont2() {
 		font2.loadFromFile("MeowScript-Regular.ttf");
+		cFont.loadFromFile("Cascadia.ttf");
 	}
 }
 

@@ -1,27 +1,40 @@
 #pragma once
 #include "Style.h"
-
+#include "home.h"
 
 void StaticArray(sf::RenderWindow& window);
+
+class ArrayNode;
+
 class SArray {
 public:
-    void init(sf::RenderWindow& window);
-    void add(sf::RenderWindow& window);
+	void createInit();
+	void init(sf::RenderWindow& window);
+	void randomInit(sf::RenderWindow& window, Button& cancel, std::vector<int>& values);
+	void customInit(sf::RenderWindow& window, Button& cancel);
+
+
+	void createUpdate(int idx, int num);
     void update(sf::RenderWindow& window);
-    void remove(sf::RenderWindow& window);
+
+	void createSearch(int num);
     void search(sf::RenderWindow& window);
 
 	//layout include home butt (back to home page), sidebar and name of DS
     Button home;
     sf::RectangleShape sidebar;
+	sf::RectangleShape codeBlank;
     sf::Text name;
 
 	//create a button for each tool
 	Button initB;
-	Button addB;
 	Button updateB;
-	Button removeB;
 	Button searchB;
+
+	std::vector<int> values;
+
+	bool finished = 0;
+	int n = 0;
 
     void setLayout() {
 		home.init(sf::Vector2f(1670.f, 800.f), "HOME");
@@ -30,6 +43,10 @@ public:
 		sidebar.setSize(sf::Vector2f(380.f, 1080.f));
 		sidebar.setPosition(sf::Vector2f(0.f, 0.f));
 
+		codeBlank.setFillColor(Style::cyan);
+		codeBlank.setSize(sf::Vector2f(350.f, 500.f));
+		codeBlank.setPosition(sf::Vector2f(15.f, 600.f));
+
 		name.setString("Static Array:");
 		name.setFillColor(sf::Color::Black);
 		name.setFont(Style::font2);
@@ -37,23 +54,18 @@ public:
 		name.setPosition(sf::Vector2f(400.f, 8.f));
 
         initB.init(sf::Vector2f(100.f, 100.f), "Initialize");
-		addB.init(sf::Vector2f(100.f, 200.f), "Add");
-		updateB.init(sf::Vector2f(100.f, 300.f), "Update");
-		removeB.init(sf::Vector2f(100.f, 400.f), "Remove");
-		searchB.init(sf::Vector2f(100.f, 500.f), "Search");
+		updateB.init(sf::Vector2f(100.f, 200.f), "Update");
+		searchB.init(sf::Vector2f(100.f, 300.f), "Search");
     }
 
 	void draw(sf::RenderWindow& window) {
-		
 		window.draw(sidebar);
 		window.draw(name);
 		home.draw(window);
-
 		initB.draw(window);
-		addB.draw(window);
 		updateB.draw(window);
-		removeB.draw(window);
-		searchB.draw(window);
-
+		searchB.draw(window);	
+		Display::draw(window);
 	}
 };
+

@@ -1,6 +1,11 @@
-﻿  Textbox.cpp
+﻿  staticArray.cpp
+D:\0. HCMUS\KTLT\Visualize\Visualize\staticArray.cpp(34,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\0. HCMUS\KTLT\Visualize\Visualize\staticArray.cpp(78,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\0. HCMUS\KTLT\Visualize\Visualize\staticArray.cpp(106,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\0. HCMUS\KTLT\Visualize\Visualize\staticArray.cpp(126,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\0. HCMUS\KTLT\Visualize\Visualize\staticArray.cpp(198,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   Generating code
-  2 of 144 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
+  1 of 671 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
