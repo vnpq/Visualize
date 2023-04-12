@@ -1,13 +1,12 @@
 #include "Arrow.h"
 
 Arrow::Arrow() {
-    // Initialize the texture and sprite arrays
-    if (!t[1].loadFromFile("arrow1.png"));
-    s[1].setTexture(t[1]);
-    if (!t[2].loadFromFile("arrow2.png"));
-    s[2].setTexture(t[2]);
+    
 }
 void Arrow::create(sf::Vector2f pos1, sf::Vector2f pos2, int k) {
+    s[1].setTexture(Style::t[1]);
+
+    s[2].setTexture(Style::t[2]);
 
     id = k;
     // Calculate the length and angle of the arrow
@@ -20,7 +19,7 @@ void Arrow::create(sf::Vector2f pos1, sf::Vector2f pos2, int k) {
     s[id].setPosition(pos1);
     s[id].setOrigin(0, s[id].getLocalBounds().height / 2.0);
     s[id].setRotation(angle);
-    s[id].setScale((length-30) / s[k].getLocalBounds().width, 1);
+    s[id].setScale((length) / s[k].getLocalBounds().width, 1.5);
     
     inited = 1;
 }

@@ -163,6 +163,7 @@
     <ClInclude Include="Arrow.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="dynaArray.h" />
     <ClInclude Include="home.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="linkedList.h" />

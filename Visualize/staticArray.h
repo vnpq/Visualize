@@ -8,22 +8,21 @@ class ArrayNode;
 
 class SArray {
 public:
-	void createInit();
+	void displayInit();
 	void init(sf::RenderWindow& window);
-	void randomInit(sf::RenderWindow& window, Button& cancel, std::vector<int>& values);
+	void randomInit();
 	void customInit(sf::RenderWindow& window, Button& cancel);
 
 
-	void createUpdate(int idx, int num);
+	void displayUpdate(int idx, int num);
     void update(sf::RenderWindow& window);
 
-	void createSearch(int num);
+	void displaySearch(int num);
     void search(sf::RenderWindow& window);
 
 	//layout include home butt (back to home page), sidebar and name of DS
     Button home;
     sf::RectangleShape sidebar;
-	sf::RectangleShape codeBlank;
     sf::Text name;
 
 	//create a button for each tool
@@ -42,10 +41,6 @@ public:
 		sidebar.setFillColor(Style::darkBlue);
 		sidebar.setSize(sf::Vector2f(380.f, 1080.f));
 		sidebar.setPosition(sf::Vector2f(0.f, 0.f));
-
-		codeBlank.setFillColor(Style::cyan);
-		codeBlank.setSize(sf::Vector2f(350.f, 500.f));
-		codeBlank.setPosition(sf::Vector2f(15.f, 600.f));
 
 		name.setString("Static Array:");
 		name.setFillColor(sf::Color::Black);

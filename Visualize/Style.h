@@ -24,9 +24,12 @@ namespace Style {
 	extern sf::Color darkBlue;
 	extern sf::Color cyan;
 	extern sf::Color lightPink;
+	extern sf::Color gray;
 	
 	extern sf::Font font;
 	extern sf::Font font2;
 	extern sf::Font cFont;
+	extern sf::Texture t[3];
 	extern void loadFont();
 }
+ 

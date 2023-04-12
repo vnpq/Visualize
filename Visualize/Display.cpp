@@ -1,7 +1,7 @@
 #include "Display.h"
 namespace Display {
 	std::vector<Layer> layers;
-	float layerStart, temp, layerLength = 1.0f;
+	float layerStart, temp, layerLength = 0.7f;
 	int layerID = -1;
 	Source source;
 	std::vector<int> sourceOrder;

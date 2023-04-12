@@ -1,2 +1,9 @@
-﻿  staticArray.cpp
-  Visualize.vcxproj -> D:\0. HCMUS\KTLT\Visualize\x64\Debug\Visualize.exe
+﻿linkedList.obj : error LNK2005: "public: void __cdecl DynaArray::customInit(class sf::RenderWindow &,class Button &)" (?customInit@DynaArray@@QEAAXAEAVRenderWindow@sf@@AEAVButton@@@Z) already defined in dynaArray.obj
+linkedList.obj : error LNK2005: "public: void __cdecl DynaArray::randomInit(void)" (?randomInit@DynaArray@@QEAAXXZ) already defined in dynaArray.obj
+linkedList.obj : error LNK2019: unresolved external symbol "public: void __cdecl LinkedList::randomInit(void)" (?randomInit@LinkedList@@QEAAXXZ) referenced in function "public: void __cdecl LinkedList::init(class sf::RenderWindow &)" (?init@LinkedList@@QEAAXAEAVRenderWindow@sf@@@Z)
+linkedList.obj : error LNK2019: unresolved external symbol "public: void __cdecl LinkedList::customInit(class sf::RenderWindow &,class Button &)" (?customInit@LinkedList@@QEAAXAEAVRenderWindow@sf@@AEAVButton@@@Z) referenced in function "public: void __cdecl LinkedList::init(class sf::RenderWindow &)" (?init@LinkedList@@QEAAXAEAVRenderWindow@sf@@@Z)
+linkedList.obj : error LNK2019: unresolved external symbol "public: void __cdecl LinkedList::update(class sf::RenderWindow &)" (?update@LinkedList@@QEAAXAEAVRenderWindow@sf@@@Z) referenced in function "void __cdecl LinkedL(class sf::RenderWindow &)" (?LinkedL@@YAXAEAVRenderWindow@sf@@@Z)
+linkedList.obj : error LNK2019: unresolved external symbol "public: void __cdecl LinkedList::add(class sf::RenderWindow &)" (?add@LinkedList@@QEAAXAEAVRenderWindow@sf@@@Z) referenced in function "void __cdecl LinkedL(class sf::RenderWindow &)" (?LinkedL@@YAXAEAVRenderWindow@sf@@@Z)
+linkedList.obj : error LNK2019: unresolved external symbol "public: void __cdecl LinkedList::remove(class sf::RenderWindow &)" (?remove@LinkedList@@QEAAXAEAVRenderWindow@sf@@@Z) referenced in function "void __cdecl LinkedL(class sf::RenderWindow &)" (?LinkedL@@YAXAEAVRenderWindow@sf@@@Z)
+linkedList.obj : error LNK2019: unresolved external symbol "public: void __cdecl LinkedList::search(class sf::RenderWindow &)" (?search@LinkedList@@QEAAXAEAVRenderWindow@sf@@@Z) referenced in function "void __cdecl LinkedL(class sf::RenderWindow &)" (?LinkedL@@YAXAEAVRenderWindow@sf@@@Z)
+D:\0. HCMUS\KTLT\Visualize\x64\Debug\Visualize.exe : fatal error LNK1120: 6 unresolved externals

@@ -62,7 +62,7 @@ LinkedListNode::LinkedListNode(sf::Vector2f pos, int x) {
 void LinkedListNode::create(sf::Vector2f pos, int x) {
 	circle.setRadius(25.f);
 	circle.setFillColor(sf::Color::White);
-	circle.setOutlineThickness(1.f);
+	circle.setOutlineThickness(2.5f);
 	circle.setOutlineColor(sf::Color::Black);
 	circle.setPosition(pos);
 	text.setFont(Style::font);
@@ -70,16 +70,50 @@ void LinkedListNode::create(sf::Vector2f pos, int x) {
 	text.setString(std::to_string(x));
 	text.setFillColor(sf::Color::Black);
 	text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
-	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius());
+	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 5.f);
 }
+void LinkedListNode::setPosition(sf::Vector2f pos)
+{
+	circle.setPosition(pos);
+	text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
+	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 5.f);
+}
+void LinkedListNode::setValue(int x)
+{
+	text.setString(std::to_string(x));
+	sf::Vector2f pos = getPosition();
+	text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
+	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 5.f);
+}
+void LinkedListNode::setHead()
+{
+	head.setFont(Style::font);
+	head.setCharacterSize(24);
+	head.setString("pHead");
+	head.setFillColor(sf::Color::Red);
+	sf::Vector2f pos = getPosition();
+	head.setOrigin(head.getGlobalBounds().width / 2, head.getGlobalBounds().height / 2);
+	head.setPosition(pos.x + circle.getRadius(), pos.y - circle.getRadius());
+}
+
+void LinkedListNode::setNormal()
+{
+	head.setString("");
+}
+
 void LinkedListNode::hightlight(sf::Color color) {
 	circle.setFillColor(color);
 }
 void LinkedListNode::draw(sf::RenderWindow& window) {
 	window.draw(circle);
 	window.draw(text);
+	window.draw(head);
 }
 
 sf::Vector2f LinkedListNode::getPosition() {
 	return circle.getPosition();
+}
+
+sf::Vector2f LinkedListNode::getSize() {
+	return sf::Vector2f(50.f, 50.f);
 }

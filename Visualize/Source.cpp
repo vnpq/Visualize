@@ -20,7 +20,7 @@ void Source::add(std::vector<std::string> st)
 		code.back().setFont(Style::cFont);
 		code.back().setString(st[i]);
 		code.back().setCharacterSize(20);
-		code.back().setPosition(sf::Vector2f(1470.f, 40.f + 20.f * i));
+		code.back().setPosition(sf::Vector2f(1470.f, 40.f + 23.f * i));
 		code.back().setFillColor(sf::Color::Black);
 	}
 }

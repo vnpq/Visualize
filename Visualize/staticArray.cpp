@@ -18,7 +18,8 @@ void StaticArray(sf::RenderWindow& window)
 				a.search(window);
 
 			if (a.home.state == 2 ||a.home.handleEvent(window, event)) {
-				return;
+				return Display::clear();
+				
 			}
 			Display::run(window, event);
 		}	
@@ -28,7 +29,7 @@ void StaticArray(sf::RenderWindow& window)
 		window.display();
 	}
 }
-void SArray::createInit() {
+void SArray::displayInit() {
 	Display::clear();
 	Layer layer;
 	float x = 1150 - 30 * n;
@@ -56,12 +57,12 @@ void SArray::init(sf::RenderWindow& window)
 				return;
 			if (custom.handleEvent(window, event)) {
 				customInit(window, cancel);
-				createInit();
+				displayInit();
 				return;
 			}
 			if (random.handleEvent(window, event)) {
-				randomInit(window, cancel, values);
-				createInit();
+				randomInit();
+				displayInit();
 				return;
 			}
 		}
@@ -73,7 +74,7 @@ void SArray::init(sf::RenderWindow& window)
 		window.display();
 	}
 }
-void SArray::randomInit(sf::RenderWindow& window, Button& cancel, std::vector<int>& values) {
+void SArray::randomInit() {
 	finished = 1;
 	srand(time(NULL));
 	n = rand() % (18) + 3;
@@ -105,7 +106,6 @@ void SArray::customInit(sf::RenderWindow& window, Button& cancel) {
 				}
 				n = values.size();
 				finished = 1;
-				createInit();
 			}
 			else return;
 		}
@@ -114,10 +114,9 @@ void SArray::customInit(sf::RenderWindow& window, Button& cancel) {
 		draw(window);
 		window.display();
 	}
-	
 }
 
-void SArray::createUpdate(int idx, int num) 
+void SArray::displayUpdate(int idx, int num)
 {
 	Display::clear();
 	Display::addSource({ "arr[idx] = num" });
@@ -156,8 +155,9 @@ void SArray::update(sf::RenderWindow& window)
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) window.close();
-			if (home.handleEvent(window, event) || cancel.handleEvent(window, event))
-				return Display::source.clear();
+			if (home.handleEvent(window, event) || cancel.handleEvent(window, event)) 
+				return displayInit();
+			
 			if (!(finished)) {
 				input(window, index, "idx =", { 310.f, 220.f }, home, cancel);
 				if (home.state == 2 || cancel.state == 2) return;
@@ -172,7 +172,7 @@ void SArray::update(sf::RenderWindow& window)
 
 				finished = 1;
 				cancel.buttonText.setString("   OK");
-				createUpdate(idx, num);
+				displayUpdate(idx, num);
 			}
 			Display::run(window, event);
 		}
@@ -184,10 +184,10 @@ void SArray::update(sf::RenderWindow& window)
 	}
 }
 
-void SArray::createSearch(int num)
+void SArray::displaySearch(int num)
 {
 	Display::clear();
-	Display::addSource({ "for (int i=0; i<n; ++i) {",
+	Display::addSource({ "for (int i = 0; i < n; ++i) {",
 						 "   if (arr[i] == num)",
 						 "      return i;",
 						 "}",
@@ -197,6 +197,9 @@ void SArray::createSearch(int num)
 	Layer layer;
 	float x = 1150 - 30 * n;
 	layer.addArray({ x, 400 }, values);
+	order.push_back(-1);
+	Display::addLayer(layer);
+
 	order.push_back(0);
 	Display::addLayer(layer);
 	
@@ -227,6 +230,7 @@ void SArray::createSearch(int num)
 		Display::addLayer(layer);
 		order.push_back(4);
 		Display::addLayer(layer);
+		finished = 1;
 	}
 
 	order.push_back(-1);
@@ -249,8 +253,8 @@ void SArray::search(sf::RenderWindow& window)
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) window.close();
-			if (home.handleEvent(window, event) || cancel.handleEvent(window, event))
-				return Display::source.clear();
+			if (home.handleEvent(window, event) || cancel.handleEvent(window, event)) 
+				return displayInit();
 			if (!(finished)) {
 				input(window, number, "num =", { 310.f, 320.f }, home, cancel);
 				if (home.state == 2 || cancel.state == 2) return;
@@ -259,7 +263,7 @@ void SArray::search(sf::RenderWindow& window)
 
 				finished = 1;
 				cancel.buttonText.setString("   OK");
-				createSearch(num);
+				displaySearch(num);
 			}
 			Display::run(window, event);
 		}

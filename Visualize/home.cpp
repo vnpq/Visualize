@@ -54,7 +54,6 @@ void home(sf::RenderWindow& window)
 	Button exit;
 	exit.init(sf::Vector2f(1670.f, 800.f), "EXIT");
 
-
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -66,7 +65,7 @@ void home(sf::RenderWindow& window)
 				staticA.state = 0;
 			}
 			if (dynaA.handleEvent(window, event)) {
-				DynaArray(window);
+				DynamicArray(window);
 				dynaA.state = 0;
 			}
 			if (LL.handleEvent(window, event)) {
