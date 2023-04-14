@@ -29,7 +29,7 @@ namespace Style {
 	extern sf::Font font;
 	extern sf::Font font2;
 	extern sf::Font cFont;
-	extern sf::Texture t[3];
+	extern sf::Texture t;
 	extern void loadFont();
 }
  

@@ -4,7 +4,7 @@
 #include "home.h"
 class LinkedListNode;
 
-void LinkedL(sf::RenderWindow& window);
+void linkedList(sf::RenderWindow& window);
 
 class LinkedList {
 public:
@@ -39,8 +39,9 @@ public:
 	Button searchB;
 
 	int n = 0;
-	bool finished = 0;
+	bool finished = 1;
 	std::vector<int> values;
+	float size = 120;
 
 	void setLayout() {
 		home.init(sf::Vector2f(1670.f, 800.f), "HOME");

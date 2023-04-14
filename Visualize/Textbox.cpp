@@ -61,10 +61,10 @@ void input(sf::RenderWindow& window, std::string& st, std::string text, sf::Vect
 	ask.setPosition(pos);
 
 	Textbox box;
-	box.init(sf::Vector2f(pos.x + 70.f, pos.y - 20.f));
+	box.init(sf::Vector2f(380.f, pos.y - 20.f));
 
 	Button OK;
-	OK.init(sf::Vector2f(pos.x + 271.f, pos.y - 21.f), "OK");
+	OK.init(sf::Vector2f(581.f, pos.y - 21.f), "OK");
 
 	while (window.isOpen()) {
 		sf::Event event;

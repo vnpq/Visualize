@@ -159,17 +159,21 @@
     <ClCompile Include="Textbox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="ArrayNode.h" />
     <ClInclude Include="Arrow.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="doublyLL.h" />
     <ClInclude Include="dynaArray.h" />
     <ClInclude Include="home.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="linkedList.h" />
+    <ClInclude Include="queue.h" />
     <ClInclude Include="Source.h" />
+    <ClInclude Include="stack.h" />
     <ClInclude Include="staticArray.h" />
-    <ClInclude Include="LLNode.h" />
+    <ClInclude Include="LinkedListNode.h" />
     <ClInclude Include="Style.h" />
     <ClInclude Include="Textbox.h" />
   </ItemGroup>

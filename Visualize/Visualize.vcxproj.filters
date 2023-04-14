@@ -101,7 +101,7 @@
     <ClInclude Include="Layer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LLNode.h">
+    <ClInclude Include="LinkedListNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ArrayNode.h">
@@ -114,6 +114,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dynaArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="doublyLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

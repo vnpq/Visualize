@@ -1,5 +1,5 @@
 #include "ArrayNode.h"
-#include "LLNode.h"
+#include "LinkedListNode.h"
 
 
 //ARRAY NODE
@@ -70,36 +70,35 @@ void LinkedListNode::create(sf::Vector2f pos, int x) {
 	text.setString(std::to_string(x));
 	text.setFillColor(sf::Color::Black);
 	text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
-	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 5.f);
+	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 6.f);
 }
 void LinkedListNode::setPosition(sf::Vector2f pos)
 {
 	circle.setPosition(pos);
 	text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
-	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 5.f);
+	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 6.f);
+	state.setOrigin(state.getGlobalBounds().width / 2, state.getGlobalBounds().height / 2);
+	state.setPosition(pos.x + circle.getRadius(), pos.y - circle.getRadius());
 }
 void LinkedListNode::setValue(int x)
 {
 	text.setString(std::to_string(x));
 	sf::Vector2f pos = getPosition();
 	text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
-	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 5.f);
+	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 6.f);
 }
-void LinkedListNode::setHead()
+void LinkedListNode::setState(std::string st)
 {
-	head.setFont(Style::font);
-	head.setCharacterSize(24);
-	head.setString("pHead");
-	head.setFillColor(sf::Color::Red);
+	state.setFont(Style::font);
+	state.setCharacterSize(23);
+	state.setString(st);
+	state.setFillColor(sf::Color::Red);
 	sf::Vector2f pos = getPosition();
-	head.setOrigin(head.getGlobalBounds().width / 2, head.getGlobalBounds().height / 2);
-	head.setPosition(pos.x + circle.getRadius(), pos.y - circle.getRadius());
+	state.setOrigin(state.getGlobalBounds().width / 2, state.getGlobalBounds().height / 2);
+	state.setPosition(pos.x + circle.getRadius(), pos.y - circle.getRadius());
 }
 
-void LinkedListNode::setNormal()
-{
-	head.setString("");
-}
+
 
 void LinkedListNode::hightlight(sf::Color color) {
 	circle.setFillColor(color);
@@ -107,7 +106,7 @@ void LinkedListNode::hightlight(sf::Color color) {
 void LinkedListNode::draw(sf::RenderWindow& window) {
 	window.draw(circle);
 	window.draw(text);
-	window.draw(head);
+	window.draw(state);
 }
 
 sf::Vector2f LinkedListNode::getPosition() {

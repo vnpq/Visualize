@@ -119,7 +119,7 @@ void SArray::customInit(sf::RenderWindow& window, Button& cancel) {
 void SArray::displayUpdate(int idx, int num)
 {
 	Display::clear();
-	Display::addSource({ "arr[idx] = num" });
+	Display::addSource({ "arr[idx] = num;" });
 	
 	Layer layer;
 	float x = 1150 - 30 * n;

@@ -69,7 +69,7 @@ void home(sf::RenderWindow& window)
 				dynaA.state = 0;
 			}
 			if (LL.handleEvent(window, event)) {
-				LinkedL(window);
+				linkedList(window);
 				LL.state = 0;
 			}
 			if (DLL.handleEvent(window, event)) {
