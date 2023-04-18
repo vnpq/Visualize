@@ -5,13 +5,11 @@
 #include "linkedList.h"
 #include "stack.h"
 #include "queue.h"
-
+#include "doublyLL.h"
+#include "circularLL.h"
 
 
 void home(sf::RenderWindow& window);
-
-void DoublyLL(sf::RenderWindow& window);
-void CircularLL(sf::RenderWindow& window);
 
 void Custom(sf::RenderWindow& window);
 

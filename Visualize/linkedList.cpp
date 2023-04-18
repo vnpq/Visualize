@@ -93,7 +93,7 @@ void LinkedList::init(sf::RenderWindow& window)
 void LinkedList::randomInit() {
 	finished = 1;
 	srand(time(NULL));
-	n = rand() % (8) + 3;
+	n = rand() % (6) + 3;
 	values.clear();
 	for (int i = 0; i < n; ++i)
 		values.push_back(rand() % (101));
@@ -292,7 +292,7 @@ void LinkedList::displayAdd(int idx, int num)
 							 "for (int i = 1; i < idx; ++i)",
 							 "   cur = cur->next;",
 							 "}",
-							 "Node* tmp = new Node{ num, cur->next };",
+							 "Node* tmp = new Node{num, cur->next};",
 							 "cur->next = tmp;"});
 		
 		order.push_back(0);
@@ -353,7 +353,7 @@ void LinkedList::displayAdd(int idx, int num)
 			order.push_back(5);
 			Display::addLayer(layer);
 
-			layer.addList({ 500, 400 }, values);		
+			layer.addList({ 500, 400 }, values);	
 		}
 	}
 
@@ -490,7 +490,7 @@ void LinkedList::displayRemove(int idx)
 			--n;
 
 			layer.lists.back().hightlight(sf::Color::White);
-			if (n > 0) layer.lists[n - 1].setState("");
+			if (n > 1) layer.lists[n - 1].setState("");
 			else layer.lists[n - 1].setState("head");
 		}
 		else {
@@ -514,9 +514,7 @@ void LinkedList::displayRemove(int idx)
 			values.erase(values.begin() + idx);
 			n--;
 			
-			layer.addList({ 500, 400 }, values);
-			if (n > 0) layer.lists[n - 1].setState("");
-			else layer.lists[n - 1].setState("head");
+			layer.addDList({ 500, 400 }, values);
 		}
 	}
 

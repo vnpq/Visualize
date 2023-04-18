@@ -50,9 +50,8 @@ namespace Display {
 	void draw(sf::RenderWindow& window)
 	{
 		if (layerID < 0) return;
-		layers[layerID].draw(window);
 		source.draw(window);
-
+		layers[layerID].draw(window);
 	}
 
 	void addOrder(std::vector<int> order)

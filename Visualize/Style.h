@@ -30,6 +30,7 @@ namespace Style {
 	extern sf::Font font2;
 	extern sf::Font cFont;
 	extern sf::Texture t;
+	extern sf::Texture t2;
 	extern void loadFont();
 }
  

@@ -39,7 +39,7 @@
     <ClCompile Include="Structure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CircularLL.cpp">
+    <ClCompile Include="circularLL.cpp">
       <Filter>Source Files\Struct</Filter>
     </ClCompile>
     <ClCompile Include="doublyLL.cpp">
@@ -126,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="doublyLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="circularLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

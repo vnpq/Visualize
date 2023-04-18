@@ -18,6 +18,7 @@ public:
 	void addArray(sf::Vector2f pos, std::vector<int> values);
 	void addList(sf::Vector2f pos, std::vector<int> values);
 	void addDList(sf::Vector2f pos, std::vector<int> values);
+	void addCList(std::vector<int> values);
 	void draw(sf::RenderWindow& window);
 };
 

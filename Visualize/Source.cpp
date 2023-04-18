@@ -12,15 +12,15 @@ void Source::highlight(int row)
 void Source::add(std::vector<std::string> st)
 {
 	sf::Text text;
-	rect.setSize({ 500.f, 330.f });
-	rect.setPosition({ 1430.f, 0.f });
+	rect.setSize({ 600.f, 280.f });
+	rect.setPosition({ 1330.f, 0.f });
 	rect.setFillColor(Style::cyan);
 	for (int i = 0; i < st.size(); ++i) {
 		code.push_back(text);
 		code.back().setFont(Style::cFont);
 		code.back().setString(st[i]);
 		code.back().setCharacterSize(20);
-		code.back().setPosition(sf::Vector2f(1470.f, 40.f + 23.f * i));
+		code.back().setPosition(sf::Vector2f(1350.f, 18.f + 23.f * i));
 		code.back().setFillColor(sf::Color::Black);
 	}
 }

@@ -66,6 +66,8 @@ void input(sf::RenderWindow& window, std::string& st, std::string text, sf::Vect
 	Button OK;
 	OK.init(sf::Vector2f(581.f, pos.y - 21.f), "OK");
 
+	st = "";
+
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
