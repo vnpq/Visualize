@@ -13,6 +13,7 @@
 #include "Layer.h"
 #include "Source.h"
 #include "Display.h"
+#include "Button2.h"
 //#include "home.h"
 
 #define M_PI 3.14159265358979323846
@@ -29,8 +30,8 @@ namespace Style {
 	extern sf::Font font;
 	extern sf::Font font2;
 	extern sf::Font cFont;
-	extern sf::Texture t;
-	extern sf::Texture t2;
+	extern sf::Texture t, t2;
+	extern sf::Texture state[6];
 	extern void loadFont();
 }
  

@@ -38,10 +38,13 @@ public:
 	Button removeB;
 	Button searchB;
 
+	
+
 	int n = 0;
 	bool finished = 1;
 	std::vector<int> values;
 	float size = 120;
+	bool playing = 1;
 
 	void setLayout() {
 		home.init(sf::Vector2f(1670.f, 800.f), "HOME");
@@ -60,7 +63,7 @@ public:
 		updateB.init(sf::Vector2f(100.f, 200.f), "Update");
 		addB.init(sf::Vector2f(100.f, 300.f), "Add");
 		removeB.init(sf::Vector2f(100.f, 400.f), "Remove");
-		searchB.init(sf::Vector2f(100.f, 500.f), "Search");
+		searchB.init(sf::Vector2f(100.f, 500.f), "Search");	
 	}
 
 	void draw(sf::RenderWindow& window) {

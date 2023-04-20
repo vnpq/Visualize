@@ -514,7 +514,7 @@ void LinkedList::displayRemove(int idx)
 			values.erase(values.begin() + idx);
 			n--;
 			
-			layer.addDList({ 500, 400 }, values);
+			layer.addList({ 500, 400 }, values);
 		}
 	}
 

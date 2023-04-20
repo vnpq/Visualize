@@ -174,7 +174,7 @@ void CLL::displayUpdate(int idx, int num)
 	Display::addLayer(layer);
 
 	layer.lists[idx].hightlight(sf::Color::White);
-	if (idx == 0) layer.lists[idx].setState("head");
+	if (idx == 0) layer.lists[idx].setState("first");
 	else layer.lists[idx].setState("");
 	order.push_back(-1);
 	Display::addLayer(layer);
@@ -228,7 +228,6 @@ void CLL::update(sf::RenderWindow& window)
 void CLL::displayAdd(int idx, int num)
 {
 	Display::clear();
-
 	Layer layer;
 	std::vector<int> order;
 	layer.addCList(values);
@@ -320,7 +319,7 @@ void CLL::displayAdd(int idx, int num)
 	}
 	else {
 		Display::addSource({ "Node* cur = first;",
-							 "for (int i = 1; i < idx; ++i)",
+							 "for (int i = 1; i < idx; ++i) {",
 							 "   cur = cur->next;",
 							 "}",
 							 "Node* tmp = new Node{num, cur->next};",
@@ -363,6 +362,7 @@ void CLL::displayAdd(int idx, int num)
 		if (idx == n - 1)
 			layer.arrows[idx].create(layer.lists[idx], layer.lists[0]);
 		else layer.arrows[idx].create(layer.lists[idx], layer.lists[idx + 1]);
+		layer.lists[idx].hightlight(Style::cyan);
 		order.push_back(4);
 		Display::addLayer(layer);
 
@@ -423,6 +423,146 @@ void CLL::add(sf::RenderWindow& window)
 
 void CLL::displayRemove(int idx)
 {
+	Display::clear();
+	Layer layer;
+	std::vector<int> order;
+	layer.addCList(values);
+	order.push_back(-1);
+	Display::addLayer(layer);
+
+	order.push_back(0);
+	Display::addLayer(layer);
+
+	if (idx == 0) {
+		Display::addSource({"if (!(first)) return;",
+							"if (first->next == first) {",
+							"   delete first;",
+							"   return;",
+							"}",
+							"Node* cur = first->next;",
+						   	"while (cur->next != first)",
+							"   cur = cur->next;",
+							"Node* tmp = first;",
+							"first = first->next;",
+							"cur->next = first;",
+							"delete tmp;" });
+
+		order.push_back(1);
+		Display::addLayer(layer);
+		if (n == 1) {
+			values.pop_back();
+			n--;
+			layer.lists.clear();
+			layer.arrows.clear();
+			order.push_back(2);
+			Display::addLayer(layer);
+
+			order.push_back(3);
+			Display::addLayer(layer);
+		}
+		else {
+			layer.lists[1].setState("cur");
+			layer.lists[1].hightlight(Style::lightPink);
+			order.push_back(5);
+			Display::addLayer(layer);
+
+			order.push_back(6);
+			Display::addLayer(layer);
+
+			for (int i = 2; i < n; ++i) {
+				layer.lists[i - 1].hightlight(sf::Color::White);
+				layer.lists[i - 1].setState("");
+				layer.lists[i].hightlight(Style::lightPink);
+				layer.lists[i].setState("cur");
+				order.push_back(7);
+				Display::addLayer(layer);
+
+				order.push_back(6);
+				Display::addLayer(layer);
+			}
+
+			layer.lists[0].setState("first/tmp");
+			layer.lists[0].hightlight(Style::cyan);
+			order.push_back(8);
+			Display::addLayer(layer);
+
+			layer.lists[0].setState("tmp");
+			layer.lists[1].setState("first");
+			order.push_back(9);
+			Display::addLayer(layer);
+
+			layer.arrows.back().create(layer.lists.back(), layer.lists[1]);
+			order.push_back(10);
+			Display::addLayer(layer);
+
+			layer.lists.erase(layer.lists.begin());
+			layer.arrows.erase(layer.arrows.begin());
+			order.push_back(11);
+			Display::addLayer(layer);
+			
+			values.erase(values.begin());
+			n--;
+			layer.addCList(values);
+		}
+	}
+	else {
+		Display::addSource({ "if (!(first)) return;",
+						 "Node* cur = first;",
+						 "for (int i = 1; i < idx; ++i) {",
+						 "   cur = cur->next;",
+						 "}",
+						 "Node* tmp = cur->next;",
+						 "cur->next = tmp->next;",
+						 "delete tmp;" });
+
+		order.push_back(1);
+		layer.lists[0].hightlight(Style::lightPink);
+		layer.lists[0].setState("first/cur");
+		Display::addLayer(layer);
+
+		order.push_back(2);
+		Display::addLayer(layer);
+
+		for (int i = 1; i < idx; ++i) {
+			layer.lists[i - 1].hightlight(sf::Color::White);
+			if (i > 1) layer.lists[i - 1].setState("");
+			else layer.lists[i - 1].setState("first");
+			layer.lists[i].hightlight(Style::lightPink);
+			layer.lists[i].setState("cur");
+			order.push_back(3);
+			Display::addLayer(layer);
+
+			order.push_back(2);
+			Display::addLayer(layer);
+		}
+
+		layer.lists[idx].hightlight(Style::cyan);
+		layer.lists[idx].setState("tmp");
+		order.push_back(5);
+		Display::addLayer(layer);
+		if (idx < n - 1)
+			layer.arrows[idx - 1].create(layer.lists[idx - 1], layer.lists[idx + 1]);
+		else 
+			layer.arrows[idx - 1].create(layer.lists[idx - 1], layer.lists[0]);
+		order.push_back(6);
+		Display::addLayer(layer);
+
+		layer.lists.erase(layer.lists.begin() + idx);
+		layer.arrows.erase(layer.arrows.begin() + idx);
+		order.push_back(7);
+		Display::addLayer(layer);
+
+		values.erase(values.begin() + idx);
+		n--;
+
+		layer.addCList(values);
+	}
+
+	order.push_back(-1);
+	Display::addLayer(layer);
+
+	Display::addOrder(order);
+	Display::start();
 }
 
 void CLL::remove(sf::RenderWindow& window)

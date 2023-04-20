@@ -51,7 +51,7 @@ void Layer::addDList(sf::Vector2f pos, std::vector<int> values)
 
 sf::Vector2f getCNodePos(int n, int i)
 {
-	sf::Vector2f pos = { 1150, 400 };
+	sf::Vector2f pos = { 1150, 450 };
 	if (n == 1) return pos;
 
 	float r = 200;
@@ -78,7 +78,7 @@ void Layer::addCList(std::vector<int> values)
 		arrows.back().create(lists[i - 1], lists[i]);
 	}
 	arrows.push_back(Arrow());
-	arrows.back().create(lists[n - 1], lists[0]);
+	arrows.back().create(lists.back(), lists[0]);
 }
 
 void Layer::draw(sf::RenderWindow& window)

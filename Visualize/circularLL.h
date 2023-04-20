@@ -40,7 +40,7 @@ public:
 	int n = 0;
 	bool finished = 1;
 	std::vector<int> values;
-	sf::Vector2f pos = { 1150, 400 };
+	sf::Vector2f pos = { 1150, 450 };
 
 	void setLayout() {
 		home.init(sf::Vector2f(1670.f, 800.f), "HOME");

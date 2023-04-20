@@ -456,10 +456,10 @@ void DLL::displayRemove(int idx)
 
 	if (idx == 0) {
 		Display::addSource({ "if (!(head)) return;",
-						 "Node* tmp = head;",
-						 "head = head->next;",
-						 "delete tmp;",
-						 "if (head) head->pre = nullptr;"});
+							 "Node* tmp = head;",
+							 "head = head->next;",
+							 "delete tmp;",
+							 "if (head) head->pre = nullptr;"});
 
 		layer.lists[0].hightlight(Style::cyan);
 		layer.lists[0].setState("head/tmp");

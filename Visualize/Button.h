@@ -19,3 +19,4 @@ public:
 	sf::Text buttonText;
 	sf::RectangleShape normalRect, hoveredRect, pressedRect;
 };
+

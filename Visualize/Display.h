@@ -3,6 +3,7 @@
 
 class Layer;
 class Source;
+class Button2;
 
 namespace Display {
 	extern std::vector<Layer> layers;
@@ -10,6 +11,15 @@ namespace Display {
 	extern int layerID;
 	extern Source source;
 	extern std::vector<int> sourceOrder;
+	extern bool playing;
+
+	extern Button2 play;
+	extern Button2 stop;
+	extern Button2 pre;
+	extern Button2 next;
+	extern Button2 begin;
+	extern Button2 end;
+
 	extern void addLayer(Layer layer);
 	extern void clear();
 	extern void start();
@@ -18,5 +28,7 @@ namespace Display {
 	extern void draw(sf::RenderWindow& window);
 	extern void addOrder(std::vector<int> order);
 	extern void addSource(std::vector<std::string> st);
+
+
 
 }

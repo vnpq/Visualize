@@ -15,12 +15,14 @@ void Source::add(std::vector<std::string> st)
 	rect.setSize({ 600.f, 280.f });
 	rect.setPosition({ 1330.f, 0.f });
 	rect.setFillColor(Style::cyan);
+	float size = 20;
+	if (st.size() >= 10) size = 19;
 	for (int i = 0; i < st.size(); ++i) {
 		code.push_back(text);
 		code.back().setFont(Style::cFont);
 		code.back().setString(st[i]);
-		code.back().setCharacterSize(20);
-		code.back().setPosition(sf::Vector2f(1350.f, 18.f + 23.f * i));
+		code.back().setCharacterSize(size);
+		code.back().setPosition(sf::Vector2f(1360.f, 20 + (size*1.1) * i));
 		code.back().setFillColor(sf::Color::Black);
 	}
 }

@@ -17,9 +17,8 @@ void StaticArray(sf::RenderWindow& window)
 			if (a.searchB.handleEvent(window, event))
 				a.search(window);
 
-			if (a.home.state == 2 ||a.home.handleEvent(window, event)) {
+			if (a.home.state == 2 || a.home.handleEvent(window, event)) {
 				return Display::clear();
-				
 			}
 			Display::run(window, event);
 		}	

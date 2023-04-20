@@ -12,14 +12,20 @@ namespace Style {
 	sf::Font font;
 	sf::Font font2;
 	sf::Font cFont;
-	sf::Texture t;
-	sf::Texture t2;
+	sf::Texture t, t2;
+	sf::Texture state[6];
 	void loadFont() {
 		font.loadFromFile("Lexend-Regular.ttf");
 		font2.loadFromFile("MeowScript-Regular.ttf");
 		cFont.loadFromFile("Cascadia.ttf");
 		t.loadFromFile("arrow.png");
 		t2.loadFromFile("self-arrow.png");
+		state[0].loadFromFile("play.jpg");
+		state[1].loadFromFile("stop.jpg");
+		state[2].loadFromFile("start.jpg");
+		state[3].loadFromFile("end.jpg");
+		state[4].loadFromFile("pre.jpg");
+		state[5].loadFromFile("next.jpg");
 	}
 }
 
