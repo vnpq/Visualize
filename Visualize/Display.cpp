@@ -29,25 +29,48 @@ namespace Display {
 
 	void start()
 	{
-		play.init({ 1150, 850 }, 0);
-		stop.init({ 1150, 850 }, 1);
-		begin.init({ 950, 850 }, 2);
-		end.init({ 1350, 850 }, 3);
-		pre.init({ 1050, 850 }, 4);
-		next.init({ 1250, 850 }, 5);
+		stop.init({ 750, 850 }, 0);
+		play.init({ 750, 850 }, 1);
+		begin.init({ 550, 850 }, 2);
+		end.init({ 950, 850 }, 3);
+		pre.init({ 650, 850 }, 4);
+		next.init({ 850, 850 }, 5);
 
 		layerStart = clock() / CLOCKS_PER_SEC;
 		layerID = 0;
 	}
 
+
 	void run(sf::RenderWindow& window, sf::Event event)
 	{
 		if (layerID < 0) return;
-		temp = clock() / CLOCKS_PER_SEC;
-		if (temp - layerStart >= layerLength) {
-			layerID = std::min(layerID + 1, (int)layers.size() - 1);
-			layerStart = temp;
+
+		if (playing) {
+			if (stop.handleEvent(window, event))
+				playing = 0;
 		}
+		else {
+			if (play.handleEvent(window, event))
+				playing = 1;
+		}
+		std::cout << playing << "\n";
+		if (next.handleEvent(window, event))
+			layerID = std::min(layerID + 1, (int)layers.size() - 1);;
+		if (pre.handleEvent(window, event))
+			layerID = std::max(layerID - 1, 0);
+		if (end.handleEvent(window, event))
+			layerID = (int)layers.size() - 1;
+		if (begin.handleEvent(window, event))
+			layerID = 0;
+
+		temp = clock() / CLOCKS_PER_SEC;
+		if (playing) {
+			if (temp - layerStart >= layerLength) {
+				layerID = std::min(layerID + 1, (int)layers.size() - 1);
+				layerStart = temp;
+			}
+		}
+		else layerStart = temp;
 		source.highlight(sourceOrder[layerID]);
 	}
 
@@ -55,10 +78,14 @@ namespace Display {
 	{
 		if (layerID < 0) return;
 		temp = clock() / CLOCKS_PER_SEC;
-		if (temp - layerStart >= layerLength) {
-			layerID = std::min(layerID + 1, (int)layers.size() - 1);
-			layerStart = temp;
+		//std::cout << playing << "\n";
+		if (playing) {
+			if (temp - layerStart >= layerLength) {
+				layerID = std::min(layerID + 1, (int)layers.size() - 1);
+				layerStart = temp;
+			}
 		}
+		else layerStart = temp;
 		source.highlight(sourceOrder[layerID]);
 	}
 
@@ -67,8 +94,8 @@ namespace Display {
 		if (layerID < 0) return;
 		source.draw(window);
 		layers[layerID].draw(window);
-		if (playing) play.draw(window);
-		else stop.draw(window);
+		if (playing) stop.draw(window);
+		else play.draw(window);
 		pre.draw(window);
 		next.draw(window);
 		begin.draw(window);

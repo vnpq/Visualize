@@ -394,7 +394,6 @@ void CLL::add(sf::RenderWindow& window)
 			if (event.type == sf::Event::Closed) window.close();
 			if (home.handleEvent(window, event) || cancel.handleEvent(window, event))
 				return displayInit();
-
 			if (!(finished)) {
 				input(window, index, "idx =", { 310.f, 320.f }, home, cancel);
 				if (home.state == 2 || cancel.state == 2) return;

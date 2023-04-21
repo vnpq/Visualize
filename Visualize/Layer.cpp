@@ -57,7 +57,7 @@ sf::Vector2f getCNodePos(int n, int i)
 	float r = 200;
 	float angle = M_PI / 2 - (M_PI * 2) / n * i;
 	float x = 1150 + r * cos(angle);
-	float y = 400 - r * sin(angle);
+	float y = 450 - r * sin(angle);
 
 	return {x, y} ;
 }

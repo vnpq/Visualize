@@ -23,12 +23,10 @@ namespace Display {
 	extern void addLayer(Layer layer);
 	extern void clear();
 	extern void start();
+	//extern void handleButtonEvents(sf::RenderWindow& window, sf::Event event);
 	extern void run(sf::RenderWindow& window, sf::Event event);
 	extern void update();
 	extern void draw(sf::RenderWindow& window);
 	extern void addOrder(std::vector<int> order);
 	extern void addSource(std::vector<std::string> st);
-
-
-
 }

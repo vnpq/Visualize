@@ -54,8 +54,6 @@ void home(sf::RenderWindow& window)
 	Button exit;
 	exit.init(sf::Vector2f(1670.f, 800.f), "EXIT");
 
-	Button2 end;
-	end.init({ 1000, 400 }, 4);
 	
 
 	while (window.isOpen()) {
@@ -113,8 +111,6 @@ void home(sf::RenderWindow& window)
 		queue.draw(window);
 		custom.draw(window);
 		exit.draw(window);
-
-		end.draw(window);
 		window.display();
 	}
 }
