@@ -6,7 +6,7 @@ void home(sf::RenderWindow& window)
 	//create the name of the app
 	sf::Text dataS;
 	dataS.setString("Data Structure");
-	dataS.setFillColor(sf::Color::Black);
+	dataS.setFillColor(Style::normalText);
 	dataS.setFont(Style::font);
 	dataS.setCharacterSize(125);
 	dataS.setPosition(sf::Vector2f(820.f, 280.f));
@@ -14,13 +14,15 @@ void home(sf::RenderWindow& window)
 	sf::Text visual;
 	visual.setString("Visualization");
 	visual.setFillColor(Style::darkBlue);
+	if (Style::dark) 
+		visual.setFillColor(Style::cyan);
 	visual.setFont(Style::font2);
 	visual.setCharacterSize(250);
 	visual.setPosition(sf::Vector2f(650.f, 320.f));
 
 	sf::Text au;
 	au.setString("MSSV: 22127360");
-	au.setFillColor(sf::Color::Black);
+	au.setFillColor(Style::normalText);
 	au.setFont(Style::font);
 	au.setStyle(sf::Text::Italic);
 	au.setCharacterSize(30);
@@ -29,7 +31,7 @@ void home(sf::RenderWindow& window)
 	
 	//create the sidebar
 	sf::RectangleShape sidebar;
-	sidebar.setFillColor(Style::darkBlue);
+	sidebar.setFillColor(Style::sideBar);
 	sidebar.setSize(sf::Vector2f(380.f, 1080.f));
 	sidebar.setPosition(sf::Vector2f(0.f, 0.f));
 
@@ -93,10 +95,15 @@ void home(sf::RenderWindow& window)
 			if (custom.handleEvent(window, event)) {
 				Custom(window);
 				custom.state = 0;
+				dataS.setFillColor(Style::normalText);
+				if (Style::dark)
+					visual.setFillColor(Style::cyan);
+				else visual.setFillColor(Style::darkBlue);
+				au.setFillColor(Style::normalText);
 			}
 				
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		window.draw(sidebar);
 		window.draw(dataS);
 		window.draw(visual);

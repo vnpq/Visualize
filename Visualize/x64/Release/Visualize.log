@@ -1,6 +1,7 @@
-﻿  Generating code
-  33 of 926 functions ( 3.6%) were compiled, the rest were copied from previous compilation.
+﻿  custom.cpp
+  Generating code
+  2 of 954 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    7 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Visualize.vcxproj -> D:\0. HCMUS\KTLT\Visualize\x64\Release\Visualize.exe

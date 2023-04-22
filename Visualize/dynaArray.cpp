@@ -29,7 +29,7 @@ void DynamicArray(sf::RenderWindow& window)
 
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		a.draw(window);
 		window.display();
 	}
@@ -76,7 +76,7 @@ void DynaArray::init(sf::RenderWindow& window)
 				return;
 			}
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		draw(window);
 		cancel.draw(window);
 		custom.draw(window);
@@ -121,7 +121,7 @@ void DynaArray::customInit(sf::RenderWindow& window, Button& cancel) {
 			}
 			else return;
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		cancel.draw(window);
 		draw(window);
 		window.display();
@@ -186,7 +186,7 @@ void DynaArray::update(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -307,7 +307,7 @@ void DynaArray::add(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -399,7 +399,7 @@ void DynaArray::remove(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -491,7 +491,7 @@ void DynaArray::search(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);

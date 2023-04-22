@@ -23,7 +23,7 @@ void StaticArray(sf::RenderWindow& window)
 			Display::run(window, event);
 		}	
 		Display::update();
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		a.draw(window);
 		window.display();
 	}
@@ -65,7 +65,7 @@ void SArray::init(sf::RenderWindow& window)
 				return;
 			}
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		draw(window);
 		cancel.draw(window);
 		custom.draw(window);
@@ -108,7 +108,7 @@ void SArray::customInit(sf::RenderWindow& window, Button& cancel) {
 			}
 			else return;
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		cancel.draw(window);
 		draw(window);
 		window.display();
@@ -175,7 +175,7 @@ void SArray::update(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -266,7 +266,7 @@ void SArray::search(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);

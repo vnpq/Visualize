@@ -93,7 +93,7 @@ void LinkedListNode::setState(std::string st)
 	state.setFont(Style::font);
 	state.setCharacterSize(23);
 	state.setString(st);
-	state.setFillColor(sf::Color::Red);
+	state.setFillColor(Style::stateText);
 	sf::Vector2f pos = getPosition();
 	state.setOrigin(state.getGlobalBounds().width / 2, state.getGlobalBounds().height / 2);
 	state.setPosition(pos.x + circle.getRadius(), pos.y - circle.getRadius());

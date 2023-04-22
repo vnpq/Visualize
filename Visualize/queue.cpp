@@ -27,7 +27,7 @@ void Queue(sf::RenderWindow& window)
 
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		a.draw(window);
 		window.display();
 	}
@@ -79,7 +79,7 @@ void QueueClass::init(sf::RenderWindow& window)
 				return;
 			}
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		draw(window);
 		cancel.draw(window);
 		custom.draw(window);
@@ -133,7 +133,7 @@ void QueueClass::customInit(sf::RenderWindow& window, Button& cancel)
 			}
 			else return;
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		cancel.draw(window);
 		draw(window);
 		window.display();
@@ -208,7 +208,7 @@ void QueueClass::enqueue(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -265,7 +265,7 @@ void QueueClass::front(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		OK.draw(window);
 		draw(window);
@@ -339,7 +339,7 @@ void QueueClass::dequeue(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		OK.draw(window);
 		draw(window);

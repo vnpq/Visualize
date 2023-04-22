@@ -27,7 +27,7 @@ void Stack(sf::RenderWindow& window)
 
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		a.draw(window);
 		window.display();
 	}
@@ -77,7 +77,7 @@ void StackClass::init(sf::RenderWindow& window)
 				return;
 			}
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		draw(window);
 		cancel.draw(window);
 		custom.draw(window);
@@ -131,7 +131,7 @@ void StackClass::customInit(sf::RenderWindow& window, Button& cancel)
 			}
 			else return;
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		cancel.draw(window);
 		draw(window);
 		window.display();
@@ -223,7 +223,7 @@ void StackClass::push(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -250,7 +250,7 @@ void StackClass::displayTop()
 		layer.lists[0].hightlight(Style::cyan);
 		order.push_back(1);
 		Display::addLayer(layer);
-		layer.lists[0].hightlight(sf::Color::White);
+		layer.lists[0].hightlight(Style::backgroundColor);
 	}
 
 	order.push_back(-1);
@@ -278,7 +278,7 @@ void StackClass::top(sf::RenderWindow& window)
 			}		
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		OK.draw(window);
 		draw(window);
@@ -348,7 +348,7 @@ void StackClass::pop(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		OK.draw(window);
 		draw(window);

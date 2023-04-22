@@ -19,6 +19,11 @@ namespace Display {
 	extern Button2 next;
 	extern Button2 begin;
 	extern Button2 end;
+	
+	extern float speed;
+	extern sf::Text speedText;
+	extern Button2 inc;
+	extern Button2 dec;
 
 	extern void addLayer(Layer layer);
 	extern void clear();

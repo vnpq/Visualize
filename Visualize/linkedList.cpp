@@ -30,7 +30,7 @@ void linkedList(sf::RenderWindow& window)
 
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		a.draw(window);
 		window.display();
 	}
@@ -80,7 +80,7 @@ void LinkedList::init(sf::RenderWindow& window)
 				return;
 			}
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		draw(window);
 		cancel.draw(window);
 		custom.draw(window);
@@ -129,7 +129,7 @@ void LinkedList::customInit(sf::RenderWindow& window, Button& cancel) {
 			}
 			else return;
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		cancel.draw(window);
 		draw(window);
 		window.display();
@@ -226,7 +226,7 @@ void LinkedList::update(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -397,7 +397,7 @@ void LinkedList::add(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -551,7 +551,7 @@ void LinkedList::remove(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);
@@ -652,7 +652,7 @@ void LinkedList::search(sf::RenderWindow& window)
 			}
 			Display::run(window, event);
 		}
-		window.clear(sf::Color::White);
+		window.clear(Style::backgroundColor);
 		Display::update();
 		cancel.draw(window);
 		draw(window);

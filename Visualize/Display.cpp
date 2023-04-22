@@ -1,7 +1,7 @@
 #include "Display.h"
 namespace Display {
 	std::vector<Layer> layers;
-	float layerStart, temp, layerLength = 0.7f;
+	float layerStart, temp, layerLength = 1.f;
 	int layerID = -1;
 	Source source;
 	std::vector<int> sourceOrder;
@@ -13,6 +13,11 @@ namespace Display {
 	Button2 next;
 	Button2 begin;
 	Button2 end;
+
+	float speed = 1.f;
+	sf::Text speedText;
+	Button2 inc;
+	Button2 dec;
 
 	void addLayer(Layer layer)
 	{
@@ -36,6 +41,17 @@ namespace Display {
 		pre.init({ 650, 850 }, 4);
 		next.init({ 850, 850 }, 5);
 
+		inc.init({ 260, 850 }, 6);
+		dec.init({ 70, 850 }, 7);
+
+		speedText.setFont(Style::font);
+		speedText.setFillColor(sf::Color::White);
+		std::string st = std::to_string(speed).substr(0, 4) + "x";
+		speedText.setString(st);
+		speedText.setCharacterSize(23);
+		speedText.setPosition({ 160, 840 });
+
+
 		layerStart = clock() / CLOCKS_PER_SEC;
 		layerID = 0;
 	}
@@ -53,7 +69,6 @@ namespace Display {
 			if (play.handleEvent(window, event))
 				playing = 1;
 		}
-		std::cout << playing << "\n";
 		if (next.handleEvent(window, event))
 			layerID = std::min(layerID + 1, (int)layers.size() - 1);;
 		if (pre.handleEvent(window, event))
@@ -62,6 +77,18 @@ namespace Display {
 			layerID = (int)layers.size() - 1;
 		if (begin.handleEvent(window, event))
 			layerID = 0;
+		if (dec.handleEvent(window, event) && speed > 0.25) {
+			speed -= 0.25;
+			std::string st = std::to_string(speed).substr(0, 4) + "x";
+			speedText.setString(st);
+			layerLength = 1 / speed;
+		}
+		if (inc.handleEvent(window, event)) {
+			speed += 0.25;
+			std::string st = std::to_string(speed).substr(0, 4) + "x";
+			speedText.setString(st);
+			layerLength = 1 / speed;
+		}
 
 		temp = clock() / CLOCKS_PER_SEC;
 		if (playing) {
@@ -78,7 +105,6 @@ namespace Display {
 	{
 		if (layerID < 0) return;
 		temp = clock() / CLOCKS_PER_SEC;
-		//std::cout << playing << "\n";
 		if (playing) {
 			if (temp - layerStart >= layerLength) {
 				layerID = std::min(layerID + 1, (int)layers.size() - 1);
@@ -100,6 +126,9 @@ namespace Display {
 		next.draw(window);
 		begin.draw(window);
 		end.draw(window);
+		dec.draw(window);
+		inc.draw(window);
+		window.draw(speedText);
 	}
 
 	void addOrder(std::vector<int> order)
