@@ -54,7 +54,7 @@ void home(sf::RenderWindow& window)
 	custom.init(sf::Vector2f(100.f, 800.f), "Custom");
 
 	Button exit;
-	exit.init(sf::Vector2f(1670.f, 800.f), "EXIT");
+	exit.init(sf::Vector2f(1670.f, 890.f), "EXIT");
 
 	
 
@@ -120,6 +120,8 @@ void home(sf::RenderWindow& window)
 		exit.draw(window);
 		window.display();
 	}
+
+	Display::clear();
 }
 
 

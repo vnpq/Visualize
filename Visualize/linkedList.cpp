@@ -50,13 +50,16 @@ void LinkedList::init(sf::RenderWindow& window)
 {
 	//Create a cancel button
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	Button random;
 	random.init(sf::Vector2f(480.f, 100.f), "Random");
 	Button custom;
 	custom.init(sf::Vector2f(480.f, 200.f), "Custom");
 	Button empty;
 	empty.init(sf::Vector2f(480.f, 300.f), "Empty");
+	Button file;
+	file.init({ 480, 400 }, "From file");
+	fileStatus.setString("");
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -79,6 +82,14 @@ void LinkedList::init(sf::RenderWindow& window)
 				displayInit();
 				return;
 			}
+			if (file.handleEvent(window, event)) {
+				fileInit();
+				if (!finished) {
+					fileStatus.setString("Can not open file!");
+				}
+				displayInit();
+				return;
+			}
 		}
 		window.clear(Style::backgroundColor);
 		draw(window);
@@ -86,6 +97,7 @@ void LinkedList::init(sf::RenderWindow& window)
 		custom.draw(window);
 		random.draw(window);
 		empty.draw(window);
+		file.draw(window);
 		window.display();
 	}
 }
@@ -97,6 +109,29 @@ void LinkedList::randomInit() {
 	values.clear();
 	for (int i = 0; i < n; ++i)
 		values.push_back(rand() % (101));
+}
+void LinkedList::fileInit()
+{
+	std::string arr = "";
+	finished = 0;
+	values.clear();
+	std::ifstream ifs;
+	ifs.open("input.txt");
+	if (!(ifs.good())) return;
+	while (!(ifs.eof())) {
+		std::getline(ifs, arr);
+		std::cout << "OK";
+		std::cout << arr << "\n";
+		std::stringstream ss(arr);
+		while (ss.good()) {
+			std::string substr;
+			std::getline(ss, substr, ',');
+			int num = std::stoi(substr);
+			values.push_back(num);
+		}
+	}
+	n = values.size();
+	finished = 1;
 }
 void LinkedList::emptyInit() {
 	finished = 1;
@@ -197,7 +232,7 @@ void LinkedList::update(sf::RenderWindow& window)
 	if (n == 0) return;
 
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string index = "";
 	std::string number = "";
 	finished = 0;
@@ -367,7 +402,7 @@ void LinkedList::displayAdd(int idx, int num)
 void LinkedList::add(sf::RenderWindow& window)
 {
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string index = "";
 	std::string number = "";
 	finished = 0;
@@ -528,7 +563,7 @@ void LinkedList::remove(sf::RenderWindow& window)
 {
 	if (n == 0) return;
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string index = "";
 	finished = 0;
 
@@ -630,7 +665,7 @@ void LinkedList::displaySearch(int num)
 void LinkedList::search(sf::RenderWindow& window)
 {
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string number = "";
 	finished = 0;
 

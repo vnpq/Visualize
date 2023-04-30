@@ -21,10 +21,12 @@ void Queue(sf::RenderWindow& window)
 			if (a.dequeueB.handleEvent(window, event))
 				a.dequeue(window);
 
+			if (a.clearB.handleEvent(window, event))
+				a.clear(window);
+
 			if (a.home.state == 2 || a.home.handleEvent(window, event)) {
 				return Display::clear();
 			}
-
 			Display::run(window, event);
 		}
 		window.clear(Style::backgroundColor);
@@ -49,13 +51,16 @@ void QueueClass::init(sf::RenderWindow& window)
 {
 	//Create a cancel button
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	Button random;
 	random.init(sf::Vector2f(480.f, 100.f), "Random");
 	Button custom;
 	custom.init(sf::Vector2f(480.f, 200.f), "Custom");
 	Button empty;
 	empty.init(sf::Vector2f(480.f, 300.f), "Empty");
+	Button file;
+	file.init({ 480, 400 }, "From file");
+	fileStatus.setString("");
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -78,6 +83,14 @@ void QueueClass::init(sf::RenderWindow& window)
 				displayInit();
 				return;
 			}
+			if (file.handleEvent(window, event)) {
+				fileInit();
+				if (!finished) {
+					fileStatus.setString("Can not open file!");
+				}
+				displayInit();
+				return;
+			}
 		}
 		window.clear(Style::backgroundColor);
 		draw(window);
@@ -85,6 +98,7 @@ void QueueClass::init(sf::RenderWindow& window)
 		custom.draw(window);
 		random.draw(window);
 		empty.draw(window);
+		file.draw(window);
 		window.display();
 	}
 }
@@ -104,6 +118,30 @@ void QueueClass::emptyInit()
 	finished = 1;
 	n = 0;
 	values.clear();
+}
+
+void QueueClass::fileInit()
+{
+	std::string arr = "";
+	finished = 0;
+	values.clear();
+	std::ifstream ifs;
+	ifs.open("input.txt");
+	if (!(ifs.good())) return;
+	while (!(ifs.eof())) {
+		std::getline(ifs, arr);
+		std::cout << "OK";
+		std::cout << arr << "\n";
+		std::stringstream ss(arr);
+		while (ss.good()) {
+			std::string substr;
+			std::getline(ss, substr, ',');
+			int num = std::stoi(substr);
+			values.push_back(num);
+		}
+	}
+	n = values.size();
+	finished = 1;
 }
 
 void QueueClass::customInit(sf::RenderWindow& window, Button& cancel)
@@ -186,7 +224,7 @@ void QueueClass::displayEnqueue(int num)
 void QueueClass::enqueue(sf::RenderWindow& window)
 {
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string number = "";
 	finished = 0;
 
@@ -250,7 +288,7 @@ void QueueClass::displayFront()
 void QueueClass::front(sf::RenderWindow& window)
 {
 	Button OK;
-	OK.init(sf::Vector2f(1450.f, 800.f), "OK");
+	OK.init(sf::Vector2f(1450.f, 850.f), "OK");
 	finished = 0;
 
 	while (window.isOpen()) {
@@ -324,7 +362,7 @@ void QueueClass::displayDequeue()
 void QueueClass::dequeue(sf::RenderWindow& window)
 {
 	Button OK;
-	OK.init(sf::Vector2f(1450.f, 800.f), "OK");
+	OK.init(sf::Vector2f(1450.f, 850.f), "OK");
 	finished = 0;
 
 	while (window.isOpen()) {
@@ -336,6 +374,81 @@ void QueueClass::dequeue(sf::RenderWindow& window)
 			if (!(finished)) {
 				finished = 1;
 				displayDequeue();
+			}
+			Display::run(window, event);
+		}
+		window.clear(Style::backgroundColor);
+		Display::update();
+		OK.draw(window);
+		draw(window);
+		window.display();
+	}
+}
+
+void QueueClass::displayClear()
+{
+	Display::clear();
+	Display::addSource({ "while (!(head)) {",
+						 "   pop(head);",
+						 "}" });
+
+	Layer layer;
+	std::vector<int> order;
+	layer.addList({ 500, 400 }, values);
+	if (n > 1) layer.lists.back().setState("tail");
+	if (n == 1) layer.lists[0].setState("head/tail");
+	order.push_back(-1);
+	Display::addLayer(layer);
+
+	order.push_back(0);
+	Display::addLayer(layer);
+
+	while (n != 0) {
+		layer.lists[0].hightlight(Style::cyan);
+		layer.lists[0].setState("head/tmp");
+		if (n == 1) layer.lists[0].setState("head/tail/tmp");
+		order.push_back(1);
+		Display::addLayer(layer);
+
+		layer.lists[0].setState("tmp");
+		if (n > 1) layer.lists[1].setState("head");
+		if (n == 2) layer.lists[1].setState("head/tail");
+		order.push_back(1);
+		Display::addLayer(layer);
+
+		layer.lists.erase(layer.lists.begin());
+		if (n > 1) layer.arrows.erase(layer.arrows.begin());
+		order.push_back(1);
+		Display::addLayer(layer);
+
+		values.erase(values.begin());
+		--n;
+		order.push_back(0);
+		Display::addLayer(layer);
+	}
+
+	order.push_back(-1);
+	Display::addLayer(layer);
+
+	Display::addOrder(order);
+	Display::start();
+}
+
+void QueueClass::clear(sf::RenderWindow& window)
+{
+	Button OK;
+	OK.init(sf::Vector2f(1450.f, 850.f), "OK");
+	finished = 0;
+
+	while (window.isOpen()) {
+		sf::Event event;
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed) window.close();
+			if (home.handleEvent(window, event) || OK.handleEvent(window, event))
+				return displayInit();
+			if (!(finished)) {
+				finished = 1;
+				displayClear();
 			}
 			Display::run(window, event);
 		}

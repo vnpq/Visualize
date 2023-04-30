@@ -51,11 +51,14 @@ void CLL::init(sf::RenderWindow& window)
 {
 	//Create a cancel button
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 900.f), "Cancel");
 	Button random;
 	random.init(sf::Vector2f(480.f, 100.f), "Random");
 	Button custom;
 	custom.init(sf::Vector2f(480.f, 200.f), "Custom");
+	Button file;
+	file.init({ 480, 300 }, "From file");
+	fileStatus.setString("");
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -73,12 +76,21 @@ void CLL::init(sf::RenderWindow& window)
 				displayInit();
 				return;
 			}
+			if (file.handleEvent(window, event)) {
+				fileInit();
+				if (!finished) {
+					fileStatus.setString("Can not open file!");
+				}
+				displayInit();
+				return;
+			}
 		}
 		window.clear(Style::backgroundColor);
 		draw(window);
 		cancel.draw(window);
 		custom.draw(window);
 		random.draw(window);
+		file.draw(window);
 		window.display();
 	}
 }
@@ -91,6 +103,30 @@ void CLL::randomInit()
 	values.clear();
 	for (int i = 0; i < n; ++i)
 		values.push_back(rand() % (101));
+}
+
+void CLL::fileInit()
+{
+	std::string arr = "";
+	finished = 0;
+	values.clear();
+	std::ifstream ifs;
+	ifs.open("input.txt");
+	if (!(ifs.good())) return;
+	while (!(ifs.eof())) {
+		std::getline(ifs, arr);
+		std::cout << "OK";
+		std::cout << arr << "\n";
+		std::stringstream ss(arr);
+		while (ss.good()) {
+			std::string substr;
+			std::getline(ss, substr, ',');
+			int num = std::stoi(substr);
+			values.push_back(num);
+		}
+	}
+	n = values.size();
+	finished = 1;
 }
 
 void CLL::customInit(sf::RenderWindow& window, Button& cancel)
@@ -188,7 +224,7 @@ void CLL::update(sf::RenderWindow& window)
 	if (n == 0) return;
 
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string index = "";
 	std::string number = "";
 	finished = 0;
@@ -383,7 +419,7 @@ void CLL::displayAdd(int idx, int num)
 void CLL::add(sf::RenderWindow& window)
 {
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string index = "";
 	std::string number = "";
 	finished = 0;
@@ -568,7 +604,7 @@ void CLL::remove(sf::RenderWindow& window)
 {
 	if (n == 0) return;
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string index = "";
 	finished = 0;
 
@@ -677,7 +713,7 @@ void CLL::displaySearch(int num)
 void CLL::search(sf::RenderWindow& window)
 {
 	Button cancel;
-	cancel.init(sf::Vector2f(1450.f, 800.f), "Cancel");
+	cancel.init(sf::Vector2f(1450.f, 850.f), "Cancel");
 	std::string number = "";
 	finished = 0;
 

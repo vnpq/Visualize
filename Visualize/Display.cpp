@@ -1,6 +1,7 @@
 #include "Display.h"
 namespace Display {
 	std::vector<Layer> layers;
+	//Layer* layers;
 	float layerStart, temp, layerLength = 1.f;
 	int layerID = -1;
 	Source source;
@@ -34,26 +35,27 @@ namespace Display {
 
 	void start()
 	{
-		stop.init({ 750, 850 }, 0);
-		play.init({ 750, 850 }, 1);
-		begin.init({ 550, 850 }, 2);
-		end.init({ 950, 850 }, 3);
-		pre.init({ 650, 850 }, 4);
-		next.init({ 850, 850 }, 5);
+		stop.init({ 750, 900 }, 0);
+		play.init({ 750, 900 }, 1);
+		begin.init({ 550, 900 }, 2);
+		end.init({ 950, 900 }, 3);
+		pre.init({ 650, 900 }, 4);
+		next.init({ 850, 900 }, 5);
 
-		inc.init({ 260, 850 }, 6);
-		dec.init({ 70, 850 }, 7);
+		inc.init({ 260, 900 }, 6);
+		dec.init({ 70, 900 }, 7);
 
 		speedText.setFont(Style::font);
 		speedText.setFillColor(sf::Color::White);
 		std::string st = std::to_string(speed).substr(0, 4) + "x";
 		speedText.setString(st);
 		speedText.setCharacterSize(23);
-		speedText.setPosition({ 160, 840 });
+		speedText.setPosition({ 160, 890 });
+		playing = 1;
 
-
-		layerStart = clock() / CLOCKS_PER_SEC;
+		layerStart = (float)clock() / CLOCKS_PER_SEC;
 		layerID = 0;
+		//layers = new Layer[10];
 	}
 
 
@@ -62,12 +64,15 @@ namespace Display {
 		if (layerID < 0) return;
 
 		if (playing) {
-			if (stop.handleEvent(window, event))
+			if (stop.handleEvent(window, event) || layerID == layers.size() - 1)
 				playing = 0;
 		}
 		else {
-			if (play.handleEvent(window, event))
+			if (play.handleEvent(window, event)) {
 				playing = 1;
+				if (layerID == layers.size() - 1) 
+					layerID = 0;
+			}
 		}
 		if (next.handleEvent(window, event))
 			layerID = std::min(layerID + 1, (int)layers.size() - 1);;
@@ -81,16 +86,16 @@ namespace Display {
 			speed -= 0.25;
 			std::string st = std::to_string(speed).substr(0, 4) + "x";
 			speedText.setString(st);
-			layerLength = 1 / speed;
+			layerLength = 1.0 / speed;
 		}
 		if (inc.handleEvent(window, event)) {
 			speed += 0.25;
 			std::string st = std::to_string(speed).substr(0, 4) + "x";
 			speedText.setString(st);
-			layerLength = 1 / speed;
+			layerLength = 1.0 / speed;
 		}
 
-		temp = clock() / CLOCKS_PER_SEC;
+		temp = (float)clock() / CLOCKS_PER_SEC;
 		if (playing) {
 			if (temp - layerStart >= layerLength) {
 				layerID = std::min(layerID + 1, (int)layers.size() - 1);
@@ -104,7 +109,7 @@ namespace Display {
 	void update()
 	{
 		if (layerID < 0) return;
-		temp = clock() / CLOCKS_PER_SEC;
+		temp = (float)clock() / CLOCKS_PER_SEC;
 		if (playing) {
 			if (temp - layerStart >= layerLength) {
 				layerID = std::min(layerID + 1, (int)layers.size() - 1);

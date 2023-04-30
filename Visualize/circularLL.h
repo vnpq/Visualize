@@ -11,6 +11,7 @@ public:
 	void displayInit();
 	void init(sf::RenderWindow& window);
 	void randomInit();
+	void fileInit();
 	void customInit(sf::RenderWindow& window, Button& cancel);
 
 	void displayUpdate(int idx, int num);
@@ -36,6 +37,7 @@ public:
 	Button addB;
 	Button removeB;
 	Button searchB;
+	sf::Text fileStatus;
 
 	int n = 0;
 	bool finished = 1;
@@ -43,7 +45,7 @@ public:
 	sf::Vector2f pos = { 1150, 450 };
 
 	void setLayout() {
-		home.init(sf::Vector2f(1670.f, 800.f), "HOME");
+		home.init(sf::Vector2f(1670.f, 850.f), "HOME");
 
 		sidebar.setFillColor(Style::sideBar);
 		sidebar.setSize(sf::Vector2f(380.f, 1080.f));
@@ -55,6 +57,12 @@ public:
 		name.setCharacterSize(60);
 		name.setPosition(sf::Vector2f(400.f, 8.f));
 
+		fileStatus.setString("");
+		fileStatus.setFillColor(Style::normalText);
+		fileStatus.setFont(Style::font);
+		fileStatus.setCharacterSize(30);
+		fileStatus.setPosition(sf::Vector2f(500.f, 400.f));
+
 		initB.init(sf::Vector2f(100.f, 100.f), "Initialize");
 		updateB.init(sf::Vector2f(100.f, 200.f), "Update");
 		addB.init(sf::Vector2f(100.f, 300.f), "Add");
@@ -65,6 +73,7 @@ public:
 	void draw(sf::RenderWindow& window) {
 		window.draw(sidebar);
 		window.draw(name);
+		window.draw(fileStatus);
 		home.draw(window);
 		initB.draw(window);
 		addB.draw(window);

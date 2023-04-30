@@ -11,6 +11,7 @@ public:
 	void displayInit();
 	void init(sf::RenderWindow& window);
 	void randomInit();
+	void fileInit();
 	void emptyInit();
 	void customInit(sf::RenderWindow& window, Button& cancel);
 
@@ -37,9 +38,8 @@ public:
 	Button addB;
 	Button removeB;
 	Button searchB;
-
+	sf::Text fileStatus;
 	
-
 	int n = 0;
 	bool finished = 1;
 	std::vector<int> values;
@@ -47,7 +47,7 @@ public:
 	bool playing = 1;
 
 	void setLayout() {
-		home.init(sf::Vector2f(1670.f, 800.f), "HOME");
+		home.init(sf::Vector2f(1670.f, 850.f), "HOME");
 
 		sidebar.setFillColor(Style::sideBar);
 		sidebar.setSize(sf::Vector2f(380.f, 1080.f));
@@ -58,6 +58,12 @@ public:
 		name.setFont(Style::font2);
 		name.setCharacterSize(60);
 		name.setPosition(sf::Vector2f(400.f, 8.f));
+
+		fileStatus.setString("");
+		fileStatus.setFillColor(Style::normalText);
+		fileStatus.setFont(Style::font);
+		fileStatus.setCharacterSize(30);
+		fileStatus.setPosition(sf::Vector2f(500.f, 400.f));
 
 		initB.init(sf::Vector2f(100.f, 100.f), "Initialize");
 		updateB.init(sf::Vector2f(100.f, 200.f), "Update");
