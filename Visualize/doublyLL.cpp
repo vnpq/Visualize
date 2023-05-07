@@ -366,6 +366,7 @@ void DLL::displayAdd(int idx, int num)
 			Display::addLayer(layer);
 
 			layer.lists[n].hightlight(sf::Color::White);
+			values.push_back(num);
 			n++;
 		}
 		else {
@@ -560,7 +561,7 @@ void DLL::displayRemove(int idx)
 						 "}",
 						 "Node* tmp = cur->next;",
 						 "cur->next = tmp->next;",
-						 "tmp->next->pre = cur;"
+						 "tmp->next->pre = cur;",
 						 "delete tmp;" });
 
 			order.push_back(1);
