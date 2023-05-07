@@ -75,7 +75,7 @@ void LinkedListNode::create(sf::Vector2f pos, int x) {
 void LinkedListNode::setPosition(sf::Vector2f pos)
 {
 	circle.setPosition(pos);
-	circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
+	//circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
 	text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
 	text.setPosition(pos.x + circle.getRadius(), pos.y + circle.getRadius() - 6.f);
 	state.setOrigin(state.getGlobalBounds().width / 2, state.getGlobalBounds().height / 2);

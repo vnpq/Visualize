@@ -56,7 +56,6 @@ void home(sf::RenderWindow& window)
 	Button exit;
 	exit.init(sf::Vector2f(1670.f, 890.f), "EXIT");
 
-	
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -108,7 +107,7 @@ void home(sf::RenderWindow& window)
 		window.draw(dataS);
 		window.draw(visual);
 		window.draw(au);
-
+		
 		staticA.draw(window);
 		dynaA.draw(window);
 		LL.draw(window);
@@ -118,6 +117,7 @@ void home(sf::RenderWindow& window)
 		queue.draw(window);
 		custom.draw(window);
 		exit.draw(window);
+
 		window.display();
 	}
 
