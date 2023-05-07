@@ -398,7 +398,7 @@ void StackClass::pop(sf::RenderWindow& window)
 void StackClass::displayClear()
 {
 	Display::clear();
-	Display::addSource({ "while (!(head)) {",
+	Display::addSource({ "while (head) {",
 						 "   pop(head);",
 						 "}" });
 

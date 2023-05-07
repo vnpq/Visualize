@@ -388,7 +388,7 @@ void QueueClass::dequeue(sf::RenderWindow& window)
 void QueueClass::displayClear()
 {
 	Display::clear();
-	Display::addSource({ "while (!(head)) {",
+	Display::addSource({ "while (head) {",
 						 "   pop(head);",
 						 "}" });
 
